@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA80078427EB602B00D01918 /* Lecture.c in Sources */ = {isa = PBXBuildFile; fileRef = DA80078327EB602B00D01918 /* Lecture.c */; };
+		DA80078827EB63E300D01918 /* Affichage.c in Sources */ = {isa = PBXBuildFile; fileRef = DA80078727EB63E300D01918 /* Affichage.c */; };
+		DA80078B27EB6A8A00D01918 /* Initialisation.c in Sources */ = {isa = PBXBuildFile; fileRef = DA80078A27EB6A8A00D01918 /* Initialisation.c */; };
+		DA80078E27EB6F6600D01918 /* Remplissage.c in Sources */ = {isa = PBXBuildFile; fileRef = DA80078D27EB6F6600D01918 /* Remplissage.c */; };
+		DA80079127EC8AE500D01918 /* Verifications.c in Sources */ = {isa = PBXBuildFile; fileRef = DA80079027EC8AE500D01918 /* Verifications.c */; };
 		DAA544AF27C1588B00EAA374 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = DAA544AE27C1588B00EAA374 /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DA80078227EB602B00D01918 /* Lecture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lecture.h; sourceTree = "<group>"; };
+		DA80078327EB602B00D01918 /* Lecture.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Lecture.c; sourceTree = "<group>"; };
+		DA80078527EB620F00D01918 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		DA80078627EB63E300D01918 /* Affichage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Affichage.h; sourceTree = "<group>"; };
+		DA80078727EB63E300D01918 /* Affichage.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Affichage.c; sourceTree = "<group>"; };
+		DA80078927EB6A8A00D01918 /* Initialisation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Initialisation.h; sourceTree = "<group>"; };
+		DA80078A27EB6A8A00D01918 /* Initialisation.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Initialisation.c; sourceTree = "<group>"; };
+		DA80078C27EB6F6600D01918 /* Remplissage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Remplissage.h; sourceTree = "<group>"; };
+		DA80078D27EB6F6600D01918 /* Remplissage.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Remplissage.c; sourceTree = "<group>"; };
+		DA80078F27EC8AE500D01918 /* Verifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Verifications.h; sourceTree = "<group>"; };
+		DA80079027EC8AE500D01918 /* Verifications.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Verifications.c; sourceTree = "<group>"; };
 		DAA544AB27C1588A00EAA374 /* Graphes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Graphes; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA544AE27C1588B00EAA374 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +74,17 @@
 			isa = PBXGroup;
 			children = (
 				DAA544AE27C1588B00EAA374 /* main.c */,
+				DA80078527EB620F00D01918 /* main.h */,
+				DA80078327EB602B00D01918 /* Lecture.c */,
+				DA80078227EB602B00D01918 /* Lecture.h */,
+				DA80078727EB63E300D01918 /* Affichage.c */,
+				DA80078627EB63E300D01918 /* Affichage.h */,
+				DA80078A27EB6A8A00D01918 /* Initialisation.c */,
+				DA80078927EB6A8A00D01918 /* Initialisation.h */,
+				DA80078D27EB6F6600D01918 /* Remplissage.c */,
+				DA80078C27EB6F6600D01918 /* Remplissage.h */,
+				DA80079027EC8AE500D01918 /* Verifications.c */,
+				DA80078F27EC8AE500D01918 /* Verifications.h */,
 			);
 			path = Graphes;
 			sourceTree = "<group>";
@@ -119,7 +146,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA80079127EC8AE500D01918 /* Verifications.c in Sources */,
+				DA80078427EB602B00D01918 /* Lecture.c in Sources */,
 				DAA544AF27C1588B00EAA374 /* main.c in Sources */,
+				DA80078B27EB6A8A00D01918 /* Initialisation.c in Sources */,
+				DA80078E27EB6F6600D01918 /* Remplissage.c in Sources */,
+				DA80078827EB63E300D01918 /* Affichage.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
