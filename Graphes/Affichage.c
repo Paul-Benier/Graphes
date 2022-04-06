@@ -2,8 +2,16 @@
 
 #include "Affichage.h"
 
-int AffichageTableau(tableau tabContraintes, int tabnbparligne[30], int *nbligne){
-    for (int i=0 ; i<*nbligne ; i++){
+int AffichageTableau(tableau tabContraintes, int tabnbparligne[40], int nbligne, int a, int w){
+    int debut = 1;
+    int fin = nbligne+1;
+    if (a == 1){
+        debut = 0;
+    }
+    if (w == 1){
+        fin = 0;
+    }
+    for (int i=debut ; i<fin ; i++){
         for (int j=0 ; j<tabnbparligne[i] ; j++){
             if (tabContraintes[i][j] < 10){
                 printf(" "); // espace pour garder l'alignement
@@ -15,7 +23,7 @@ int AffichageTableau(tableau tabContraintes, int tabnbparligne[30], int *nbligne
     return 0;
 }
 
-int AffichageMatrice(matrice matriceAdjacence, tableau tabContraintes, int nbligne, int a, int w){
+int AffichageMatrice(matrice matrice, tableau tabContraintes, int nbligne, int a, int w){
     printf ("   "); // espace pour garder l'alignement
     int debut = 1;
     if (a == 1){
@@ -45,23 +53,23 @@ int AffichageMatrice(matrice matriceAdjacence, tableau tabContraintes, int nblig
         else if (i == nbligne+1){
             printf (" w");
         }
-        else if (tabContraintes[i-1][0] < 10){
+        else if (tabContraintes[i][0] < 10){
             printf (" "); // espace pour garder l'alignement
-            printf("%d", tabContraintes[i-1][0]); // Affichage du numéro de sommet
+            printf("%d", tabContraintes[i][0]); // Affichage du numéro de sommet
         }
         else{
-            printf("%d", tabContraintes[i-1][0]); // Affichage du numéro de sommet
+            printf("%d", tabContraintes[i][0]); // Affichage du numéro de sommet
         }
         for (int j=debut ; j<fin ; j++){
             printf (" "); // espace entre les valeurs
-            if (matriceAdjacence[i][j] < 10){
+            if (matrice[i][j] < 10){
                 printf (" "); // espace pour garder l'alignement
             }
-            if (matriceAdjacence[i][j] == 0){
+            if (matrice[i][j] == 0){
                 printf("."); // Le '.' correspond à '0' pour plus de lisibilité.
             }
             else{
-                printf("%d", matriceAdjacence[i][j]); // Affichage de la valeur
+                printf("%d", matrice[i][j]); // Affichage de la valeur
             }
         }
         printf("\n");

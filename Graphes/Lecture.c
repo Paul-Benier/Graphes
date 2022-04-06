@@ -2,7 +2,7 @@
 
 #include "Lecture.h"
 
-int LectureFichier(tableau tabContraintes, char nomFichier[100], int tabnbparligne[30], int *nbligne){
+int LectureFichier(tableau tabContraintes, char nomFichier[100], int tabnbparligne[40], int *nbligne){
     FILE* fichier = NULL;
     int caractereActuel = 0;
     fichier = fopen(nomFichier, "r"); // On ouvre le fichier contenant le tableau de contraintes
@@ -11,7 +11,7 @@ int LectureFichier(tableau tabContraintes, char nomFichier[100], int tabnbparlig
         caractereActuel = fgetc(fichier); // Lecture du premier caractère
         while (caractereActuel != EOF){ // EOF : caractère de fin de fichier
             if (caractereActuel == '\n'){ // Si le caractère lu est '\n' (un retour à la ligne)
-                tabnbparligne[*nbligne] = nbparligne; // On entre le nombre de nombre de la ligne
+                tabnbparligne[*nbligne+1] = nbparligne; // On entre le nombre de nombre de la ligne
                 *nbligne += 1;
                 nbparligne = 0;
                 caractereActuel = fgetc(fichier); // Lecture du caractère suivant
@@ -26,11 +26,11 @@ int LectureFichier(tableau tabContraintes, char nomFichier[100], int tabnbparlig
                     cara = cara * 10 + (caractereActuel - '0'); // On prend les n chiffres que l'on concatène avec une opération mathématique
                     caractereActuel = fgetc(fichier); // Lecture du caractère suivant
                 }
-                tabContraintes[*nbligne][nbparligne] = cara; // On rentre le chiffre ou nombre à la suite
+                tabContraintes[*nbligne+1][nbparligne] = cara; // On rentre le chiffre ou nombre à la suite
                 nbparligne += 1;
             }
         }
-        tabnbparligne[*nbligne] = nbparligne;
+        tabnbparligne[*nbligne+1] = nbparligne;
         *nbligne += 1;
      
         fclose(fichier);

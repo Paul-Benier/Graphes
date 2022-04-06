@@ -17,8 +17,13 @@ int main(int argc, const char * argv[]) {
         
         tableau tabContraintes;
         char nomFichier[100] = "/Users/paul/Théorie des graphes/Graphes/C01.txt";
-        int tabnbparligne[30]; // Tableau permettant de connaitre le nombre de nombre de chaque ligne
+        int tabnbparligne[40]; // Tableau permettant de connaitre le nombre de nombre de chaque ligne
+        InitialisationTab(tabnbparligne, 40, 0);
         int nbligne = 0; // Variable permettant de connaitre le nombre de ligne
+        int a = 0; // variable alpha si besoin
+        int w = 0; // variable omega si besoin
+        
+        
         LectureFichier(tabContraintes, nomFichier, tabnbparligne, &nbligne);
     
         //  #######################################
@@ -26,14 +31,14 @@ int main(int argc, const char * argv[]) {
         //  #######################################
         
         printf("\nTableau de contraintes :\n");
-        AffichageTableau(tabContraintes, tabnbparligne, &nbligne);
+        AffichageTableau(tabContraintes, tabnbparligne, nbligne, a, w);
 
         //  ########################################################
         //  | CREATION ET INITIALISATION DE LA MATRICE D'ADJACENCE |
         //  ########################################################
 
         matrice matriceAdjacence;
-        Initialisation(matriceAdjacence, nbligne);
+        Initialisation(matriceAdjacence, nbligne, 0);
 
         //  #########################################
         //  | REMPLISSAGE DE LA MATRICE D'ADJACENCE |
@@ -46,8 +51,6 @@ int main(int argc, const char * argv[]) {
         //  #######################################
 
         printf("\nMatrice d'Adjacence :\n");
-        int a = 0;
-        int w = 0;
         AffichageMatrice(matriceAdjacence, tabContraintes, nbligne, a, w);
 
         //  #######################################################
@@ -55,7 +58,7 @@ int main(int argc, const char * argv[]) {
         //  #######################################################
 
         matrice matriceValeurs; // Création de la matrice des valeurs
-        Initialisation(matriceValeurs, nbligne);
+        Initialisation(matriceValeurs, nbligne, 0);
 
         //  ########################################
         //  | REMPLISSAGE DE LA MATRICE DE VALEURS |
@@ -92,8 +95,6 @@ int main(int argc, const char * argv[]) {
         // 1 (Valide) et 0 (Non valide)
         int tabEntree[nbligne+2];
         int tabSortie[nbligne+2];
-        InitialisationTab(tabEntree, nbligne+2);
-        InitialisationTab(tabSortie, nbligne+2);
         
 
         // Vérification : "Valeurs identiques pour tous les arcs incidents vers l’extérieur à un sommet"
@@ -125,26 +126,62 @@ int main(int argc, const char * argv[]) {
         }
 
         // Vérification : "Un seul point d’entrée"
-        verifPe = VerifPointEntree(matriceAdjacence, nbligne, tabEntree);
+        verifPe = VerifPointEntree(matriceAdjacence, nbligne, tabEntree, a, w);
         printf("\nUn seul point d’entrée : ");
         if (verifPe == 0){
             printf("NON VALIDE ! ! !\n");
+            a = 1;
         }
         else{
             printf("VALIDE\n");
         }
 
         // Vérification : "Un seul point de sortie"
-        verifPs = VerifPointSortie(matriceAdjacence, nbligne, tabSortie);
+        verifPs = VerifPointSortie(matriceAdjacence, nbligne, tabSortie, a, w);
         printf("\nUn seul point de sortie : ");
         if (verifPs == 0){
             printf("NON VALIDE ! ! !\n");
+            w = 1;
         }
         else{
             printf("VALIDE\n");
         }
         
+        if (verifPe == 0 || verifPs == 0){
+            printf("\nCorrection des matrices :\n");
+            Correction(matriceAdjacence, tabContraintes, tabnbparligne, nbligne, 1, tabEntree, tabSortie, a, w);
+            Correction(matriceValeurs, tabContraintes, tabnbparligne, nbligne, 2, tabEntree, tabSortie, a, w);
+            
+            printf("\nMatrice d'Adjacence avec a et w :\n");
+            AffichageMatrice(matriceAdjacence, tabContraintes, nbligne, a, w);
+            printf("\nMatrice des Valeurs avec a et w :\n");
+            AffichageMatrice(matriceValeurs, tabContraintes, nbligne, a, w);
+            
+            // Vérification : "Un seul point d’entrée"
+            verifPe = VerifPointEntree(matriceAdjacence, nbligne, tabEntree, a, w);
+            printf("\nUn seul point d’entrée : ");
+            if (verifPe == 0){
+                printf("NON VALIDE ! ! !\n");
+                a = 1;
+            }
+            else{
+                printf("VALIDE\n");
+            }
+
+            // Vérification : "Un seul point de sortie"
+            verifPs = VerifPointSortie(matriceAdjacence, nbligne, tabSortie, a, w);
+            printf("\nUn seul point de sortie : ");
+            if (verifPs == 0){
+                printf("NON VALIDE ! ! !\n");
+                w = 1;
+            }
+            else{
+                printf("VALIDE\n");
+            }
+        }
+        
         // Vérification : "Pas de circuit"
+        verifCircuit = VerifCircuit(tabContraintes, nbligne, tabnbparligne);
         printf("\nPas de circuit : ");
         if (verifCircuit == 0){
             printf("NON VALIDE ! ! !\n");
@@ -164,14 +201,6 @@ int main(int argc, const char * argv[]) {
             printf("%d ", tabSortie[i]);
         }
         printf("\n\n\n");
-        
-        //  ################################################
-        //  | AFFICHAGE DE LA MATRICE D'ADJACENCE MODIFIEE |
-        //  ################################################
-
-        printf("\nMatrice d'Adjacence avec a et w :\n");
-        AffichageMatrice(matriceAdjacence, tabContraintes, nbligne, 1, 1);
-
 
         printf("\n");
         //printf("Voulez-vous continuer ? Tapez 1 pour continuer : ");

@@ -7,6 +7,6 @@
 #include <stdlib.h>
 
 typedef int matrice[40][40];
-typedef int tableau[30][30];
+typedef int tableau[40][40];
 
 #endif /* typedef_h */
