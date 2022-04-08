@@ -9,14 +9,23 @@ int AffichageTableau(tableau tabContraintes, int tabnbparligne[40], int nbligne,
         debut = 0;
     }
     if (w == 1){
-        fin = 0;
+        fin = nbligne+2;
     }
     for (int i=debut ; i<fin ; i++){
         for (int j=0 ; j<tabnbparligne[i] ; j++){
-            if (tabContraintes[i][j] < 10){
-                printf(" "); // espace pour garder l'alignement
+            if (tabContraintes[i][j] == 'a'){
+                printf(" a "); // espace pour garder l'alignement
             }
-            printf("%d ", tabContraintes[i][j]); // on affiche le nombre
+            else if (tabContraintes[i][j] == 'w'){
+                printf(" w "); // espace pour garder l'alignement
+            }
+            else if (tabContraintes[i][j] < 10){
+                printf(" "); // espace pour garder l'alignement
+                printf("%d ", tabContraintes[i][j]); // on affiche le nombre
+            }
+            else{
+                printf("%d ", tabContraintes[i][j]); // on affiche le nombre
+            }
         }
         printf("\n");
     }

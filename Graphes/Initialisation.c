@@ -35,3 +35,10 @@ int InitialisationTab(int tab[], int taille, int nb){
     }
     return 0;
 }
+
+int CopieTab(int tabnbparligne[40], int tabnbparlignebis[40], int nblignes){
+    for (int i=0 ; i<nblignes+2 ; i++) {
+        tabnbparlignebis[i] = tabnbparligne[i];
+    }
+    return 0;
+}

@@ -148,14 +148,17 @@ int main(int argc, const char * argv[]) {
         }
         
         if (verifPe == 0 || verifPs == 0){
-            printf("\nCorrection des matrices :\n");
-            Correction(matriceAdjacence, tabContraintes, tabnbparligne, nbligne, 1, tabEntree, tabSortie, a, w);
-            Correction(matriceValeurs, tabContraintes, tabnbparligne, nbligne, 2, tabEntree, tabSortie, a, w);
+            printf("\nCorrection des matrices et du tableau de contraintes :\n");
+            CorrectionMatrice(matriceAdjacence, tabContraintes, tabnbparligne, nbligne, 1, tabEntree, tabSortie);
+            CorrectionMatrice(matriceValeurs, tabContraintes, tabnbparligne, nbligne, 2, tabEntree, tabSortie);
+            CorrectionTab(matriceAdjacence, tabContraintes, tabnbparligne, nbligne, a, w);
             
             printf("\nMatrice d'Adjacence avec a et w :\n");
             AffichageMatrice(matriceAdjacence, tabContraintes, nbligne, a, w);
             printf("\nMatrice des Valeurs avec a et w :\n");
             AffichageMatrice(matriceValeurs, tabContraintes, nbligne, a, w);
+            printf("\nTableau de contraintes avec a et w :\n");
+            AffichageTableau(tabContraintes, tabnbparligne, nbligne, a, w);
             
             // Vérification : "Un seul point d’entrée"
             verifPe = VerifPointEntree(matriceAdjacence, nbligne, tabEntree, a, w);
@@ -181,7 +184,7 @@ int main(int argc, const char * argv[]) {
         }
         
         // Vérification : "Pas de circuit"
-        verifCircuit = VerifCircuit(tabContraintes, nbligne, tabnbparligne);
+        verifCircuit = VerifCircuit(tabContraintes, nbligne, tabnbparligne, a, w);
         printf("\nPas de circuit : ");
         if (verifCircuit == 0){
             printf("NON VALIDE ! ! !\n");
@@ -189,18 +192,6 @@ int main(int argc, const char * argv[]) {
         else{
             printf("VALIDE\n");
         }
-        
-        printf("\n\n\n");
-        printf("tabEntree : ");
-        for (int i=0 ; i<nbligne+2 ; i++) {
-            printf("%d ", tabEntree[i]);
-        }
-        printf("\n\n");
-        printf("tabSortie : ");
-        for (int i=0 ; i<nbligne+2 ; i++) {
-            printf("%d ", tabSortie[i]);
-        }
-        printf("\n\n\n");
 
         printf("\n");
         //printf("Voulez-vous continuer ? Tapez 1 pour continuer : ");

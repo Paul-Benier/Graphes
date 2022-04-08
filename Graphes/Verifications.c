@@ -5,11 +5,61 @@
 #include "Affichage.h"
 
 
-int VerifCircuit (tableau tabContraintes, int nbligne, int tabnbparligne[40]){
+int VerifCircuit (tableau tabContraintes, int nbligne, int tabnbparligne[40], int a, int w){
     tableau tabContraintesBis;
     InitialisationTabContraintes(tabContraintesBis, 40, 0);
     CopieTabContraintes(tabContraintes, tabContraintesBis, nbligne, tabnbparligne);
-    AffichageTableau(tabContraintesBis, tabnbparligne, nbligne, 0, 0);
+    int tabnbparlignebis[40];
+    InitialisationTab(tabnbparlignebis, 40, 0);
+    CopieTab(tabnbparligne, tabnbparlignebis, nbligne);
+    printf("\n");
+    int debut = 1;
+    int fin = nbligne+1;
+    if (a == 1){
+        debut = 0;
+    }
+    if (w == 1){
+        fin = nbligne+2;
+    }
+    int nbRang = nbligne+3;
+    while (nbRang > 0){
+        int nblignemax = 0;
+        for (int i=debut ; i<fin ; i++){
+            if (tabnbparlignebis[i] == 2){
+                for (int j=debut ; j<fin ; j++){
+                    for (int k=2 ; k<fin ; k++){
+                        if (tabContraintesBis[j][k] == tabContraintesBis[i][0]) {
+                            if (tabnbparlignebis[j] == 3){
+                                if (tabContraintesBis[i][0] == 97){
+                                    printf("Ligne %d rang %d j'ai trouvé 'a' que je 'supprime'\n", j, k);
+                                }
+                                else {
+                                    printf("Ligne %d rang %d j'ai trouvé %d que je 'supprime'\n", j, k, tabContraintesBis[i][0]);
+                                }
+                                tabContraintesBis[j][k] = 0;
+                                tabnbparlignebis[j]--;
+                            }
+                            else if (tabnbparlignebis[j] > 3){
+                                printf("Ligne %d rang %d j'ai trouvé %d que je 'remplace' par la dernière valeur de la ligne %d\n", j, k, tabContraintesBis[i][0], tabContraintesBis[j][tabnbparlignebis[j]-1]);
+                                tabContraintesBis[j][k] = tabContraintesBis[j][tabnbparlignebis[j]-1];
+                                tabContraintesBis[j][tabnbparlignebis[j-1]] = 0;
+                                tabnbparlignebis[j]--;
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                nblignemax++;
+            }
+        }
+        nbRang--;
+        if (nblignemax == 0){
+            nbRang = 0;
+            return 1;
+        }
+    }
+    AffichageTableau(tabContraintesBis, tabnbparlignebis, nbligne, a, w);
     return 0;
 }
 
